@@ -1,30 +1,30 @@
 <?php
 
-// script créé par Pierre Pollet pour eedomus
-// librement inspiré du script netatmo écrit par Connected Object 
-// généré à partir des données Myfox récupérées via Oauth
-// basé sur l'auth  "Resource Owner Password Credentials Grant"
-// une auth basée sur un "authorization code" serait mieux, mais ce n'est faisable
-// que par Connected Objects (à cause de la callback)
+// script crÃ©Ã© par Pierre Pollet pour eedomus
+// librement inspirÃ© du script netatmo Ã©crit par Connected Object 
+// gÃ©nÃ©rÃ© Ã  partir des donnÃ©es Myfox rÃ©cupÃ©rÃ©es via Oauth
+// basÃ© sur l'auth  "Resource Owner Password Credentials Grant"
+// une auth basÃ©e sur un "authorization code" serait mieux, mais ce n'est faisable
+// que par Connected Objects (Ã  cause de la callback)
 
 // encodage iso-8859-1 pour les accents
 
-// Version 1 / 22 mai 2014		/ 1ère version disponible
+// Version 1 / 22 mai 2014		/ 1Ã¨re version disponible
 
 
 $GLOBALS['api_url']  = 'https://api.myfox.me:443/v2/';
 $api_url = 'https://api.myfox.me:443/v2/';
-$ClientId ='<votre client id>';
-$ClientSecret='<votre client secret>';
+$ClientId ='<72d12dba717b5ff3c5750c61698b2565>';
+$ClientSecret='<L9EowueNq8oqWNDHBLQ7GiDKuqG4I7YJ>';
 $getToken_url = 'https://'.$ClientId.':'.$ClientSecret.'@dev.myfox.me';
-$UserName ='<username Myfox>'  ;
-$UserPassword='<password Myfox>';
+$UserName ='<patricearras@yahoo.fr>'  ;
+$UserPassword='<ViracochA33>';
 $access_token='';
 
-// on reprend le dernier refresh_token seulement s'il correspond au même code
+// on reprend le dernier refresh_token seulement s'il correspond au mÃªme code
 $refresh_token = loadVariable('refresh_token');
 $expire_time = loadVariable('expire_time');
-// s'il n'a pas expiré, on peut reprendre l'access_token
+// s'il n'a pas expirÃ©, on peut reprendre l'access_token
 if (time() < $expire_time)
  {
    $access_token = loadVariable('access_token');
@@ -32,7 +32,7 @@ if (time() < $expire_time)
  }
 
 
-// on a déjà un token d'accés non expiré pour le code demandée
+// on a dÃ©jÃ  un token d'accÃ©s non expirÃ© pour le code demandÃ©e
 if ($access_token == '')
 {
   if (strlen($refresh_token) > 1)
@@ -44,7 +44,7 @@ if ($access_token == '')
   }
   else
   {
-    // 1ère utilisation aprés obtention du code
+    // 1Ã¨re utilisation aprÃ©s obtention du code
     $grant_type = 'password';
     $postdata = 'grant_type='.$grant_type.'&username='.$UserName.'&password='.$UserPassword;
     $url=$getToken_url;
